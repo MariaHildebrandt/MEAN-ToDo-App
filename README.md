@@ -71,6 +71,9 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var todos = require('./routes/todos');
 
+//instantiate express
+var app = express();
+
 //template Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -81,7 +84,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 //routes, refers to var index, todos above
 app.use('/', index);
-app.('/api/v1', todos);
+app.use('/api/v1', todos);
 
 //open port
 app.listen(3000, function(){
@@ -91,4 +94,28 @@ app.listen(3000, function(){
 #### 4.) create a view for index
 - on the same level as the views folder, create a new folder named 'routes'
 - routes will have two files: index.js and todos.js
+- in index.js:
+```bash
+var express = require('express');
+var router = express.Router();
+
+//will print out message in browser if successful setup
+router.get('/', function(req, res, next){
+  res.send('INDEX');
+});
+
+module.exports = router;
+```
+- copy&paste into todos.js with 
+```bash
+//...
+router.get('/todos', function(req, res, next){ res.send('TODOS API');});
+//...
+```
+#### 5.) run in cmd 
+```bash
+node server
+```
+- http://localhost:3000 will show INDEX
+- http://localhost:3000/api/v1/todos will show TODOS API
 

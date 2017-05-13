@@ -91,7 +91,7 @@ app.listen(3000, function(){
   console.log('Server started on port 3000...');
 });
 ```
-#### 4.) create a view for index
+#### 4.) create index
 - on the same level as the views folder, create a new folder named 'routes'
 - routes will have two files: index.js and todos.js
 - in index.js:
@@ -112,10 +112,18 @@ module.exports = router;
 router.get('/todos', function(req, res, next){ res.send('TODOS API');});
 //...
 ```
-#### 5.) run in cmd 
+- run in cmd 
 ```bash
 node server
 ```
 - http://localhost:3000 will show INDEX
 - http://localhost:3000/api/v1/todos will show TODOS API
+- in views folder: create new file index.ejs 
+- in index.js rewrite INDEX to 'index'
+- stop (Strg/Ctrl + C) and restart the server
+- on localhost:3000 node will run whatever is written in index.ejs
 
+### Create API
+#### mLab (remote service for MongoDB)
+- create an account (free)
+- create new development. Keep amazon as default provider and click single node
